@@ -1,9 +1,9 @@
 import express from "express";
 import { Book } from "../models/bookModel.js";
 
-const router = express.Router;
+const router = express.Router();
 
-router.post('/books', async(request,response)=>{
+router.post('/', async(request,response)=>{
     try {
         if (
             !request.body.title||
@@ -30,7 +30,7 @@ router.post('/books', async(request,response)=>{
 });
 
 
-router.get('/books' , async(request,response)=>{
+router.get('/' , async(request,response)=>{
     try {
         const books = await Book.find({});
         return response.status(200).json({
@@ -44,7 +44,7 @@ router.get('/books' , async(request,response)=>{
 
 });
 
-router.get('/books/:id' , async(request,response)=>{
+router.get('/:id' , async(request,response)=>{
     try {
         const { id } = request.params;
         const books = await Book.findById(id);
@@ -56,7 +56,7 @@ router.get('/books/:id' , async(request,response)=>{
 });
 
 
-router.put('/books/:id', async(request,response)=>{
+router.put('/:id', async(request,response)=>{
     try {
         if (
             !request.body.title||
@@ -83,7 +83,7 @@ router.put('/books/:id', async(request,response)=>{
 });
 
 
-router.delete('/books/:id', async(request,response)=>{
+router.delete('/:id', async(request,response)=>{
     try {
         const {id} = request.params;
         const result = await Book.findByIdAndDelete(id);
